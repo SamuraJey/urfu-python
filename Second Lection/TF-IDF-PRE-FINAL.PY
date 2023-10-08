@@ -3,6 +3,7 @@ import math
 
 class Document:
     def __init__(self, text):
+
         self.text = text
         self.word_dict = {}
         self.list_of_words = self.text.split()
@@ -17,10 +18,12 @@ class Document:
     def compute_tf(self):
         for word, count in self.word_dict.items():
             self.tf[word] = count / len(self.list_of_words)
+        return self.tf
 
     def compute_tfidf(self, idfs):
         for word, tf in self.tf.items():
-            self.tfidf[word] = tf * idfs[word]
+            self.tfidf[word] = round(tf * idfs[word], 3)
+
 
 class Corpus:
     def __init__(self, documents):
@@ -76,7 +79,7 @@ def main():
 
     corpus.compute_idfs()
     corpus.compute_tfidf()
-
+    print(doc_a.compute_tf())
     print(corpus.get_tfidf_dataframe())
 
 if __name__ == '__main__':
