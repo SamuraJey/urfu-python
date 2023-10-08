@@ -1,9 +1,9 @@
 import pandas as pd
 import math
 
+
 class Document:
     def __init__(self, text):
-
         self.text = text
         self.word_dict = {}
         self.list_of_words = self.text.split()
@@ -35,10 +35,14 @@ class Corpus:
         for doc in self.documents:
             self.word_set = self.word_set.union(set(doc.list_of_words))
 
+    def get_word_set_len(self):
+        return len(self.word_set)
+
     def compute_idfs(self):
         num_documents = len(self.documents)
         for word in self.word_set:
-            freq = sum([1 for doc in self.documents if word in doc.list_of_words])
+            freq = sum(
+                [1 for doc in self.documents if word in doc.list_of_words])
             self.idfs[word] = math.log10(num_documents / float(freq))
 
     def compute_tfidf(self):
@@ -51,6 +55,7 @@ class Corpus:
             rows.append(doc.tfidf)
         return pd.DataFrame(rows)
 
+
 def main():
     file1 = 'Second Lection/1.txt'
     file2 = 'Second Lection/2.txt'
@@ -58,17 +63,16 @@ def main():
     file4 = 'Second Lection/4.txt'
 
     with open(file1, errors='ignore') as f:
-        doc_a = Document(f.read().lower())
+        doc_a = Document(f.read().casefold())
 
     with open(file2, errors='ignore') as f:
-        doc_b = Document(f.read().lower())
+        doc_b = Document(f.read().casefold())
 
     with open(file3, errors='ignore') as f:
-        doc_c = Document(f.read().lower())
-    
-    with open(file4, errors='ignore') as f:
-        doc_d = Document(f.read().lower())
+        doc_c = Document(f.read().casefold())
 
+    with open(file4, errors='ignore') as f:
+        doc_d = Document(f.read().casefold())
 
     corpus = Corpus([doc_a, doc_b, doc_c, doc_d, ])
 
@@ -79,8 +83,10 @@ def main():
 
     corpus.compute_idfs()
     corpus.compute_tfidf()
-    print(doc_a.compute_tf())
+
+    print(corpus.get_word_set_len())
     print(corpus.get_tfidf_dataframe())
+
 
 if __name__ == '__main__':
     main()
