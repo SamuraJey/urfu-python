@@ -92,13 +92,17 @@ def main():
 
     # corpus = Corpus([doc_a, doc_b, doc_c, doc_d, ])
 
-    # for file in [file1, file2, file3, file4]:
-    #     with open(file, errors='ignore') as f:
-    #         documents.append(Document(f.read().casefold()))
+    documents = []
+    try:
+        for file in [file1, file2, file3, file4]:
+            with open(file, errors='ignore') as f:
+                documents.append(Document(f.read().casefold()))
+    except MemoryError:
+        raise NotImplementedError
+    except OSError:
+        print("Ошибка чтения файла")
+        return
 
-    # Лютый list comprehension
-    documents = [Document(open(file, errors='ignore').read().casefold()) for file in [file1, file2, file3, file4]]
-    
     corpus = Corpus(documents)
 
     corpus.compute_word_set()
