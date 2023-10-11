@@ -1,7 +1,7 @@
 import os
 import sys
-import pandas as pd
 import math
+import pandas as pd
 
 # 1024 байта * 1024 байта * 1024 байта = байта > мегабайты > гигабайты
 MAX_FILE_SIZE = 2 * 1024 * 1024 * 1024
