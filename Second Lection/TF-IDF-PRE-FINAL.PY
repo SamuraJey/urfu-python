@@ -1,5 +1,10 @@
+import os
+import sys
 import pandas as pd
 import math
+
+# 1024 байта * 1024 байта * 1024 байта = байта > мегабайты > гигабайты
+MAX_FILE_SIZE = 2 * 1024 * 1024 * 1024
 
 
 class Document:
@@ -69,7 +74,7 @@ class Corpus:
     def get_tfidf_dataframe(self):
         # Возвращает таблицу с tf-idf. Форматирование от pandas
         rows = [doc.tfidf for doc in self.documents]
-        return pd.DataFrame(rows)
+        return pd.DataFrame(rows, index=[i + 1 for i in range(len(rows))])
 
 
 def main():
@@ -78,30 +83,19 @@ def main():
     file3 = 'Second Lection/3.txt'
     file4 = 'Second Lection/4.txt'
 
-    # with open(file1, errors='ignore') as f:
-    #     doc_a = Document(f.read().casefold())
-
-    # with open(file2, errors='ignore') as f:
-    #     doc_b = Document(f.read().casefold())
-
-    # with open(file3, errors='ignore') as f:
-    #     doc_c = Document(f.read().casefold())
-
-    # with open(file4, errors='ignore') as f:
-    #     doc_d = Document(f.read().casefold())
-
-    # corpus = Corpus([doc_a, doc_b, doc_c, doc_d, ])
-
     documents = []
-    try:
-        for file in [file1, file2, file3, file4]:
-            with open(file, errors='ignore') as f:
-                documents.append(Document(f.read().casefold()))
-    except MemoryError:
-        raise NotImplementedError
-    except OSError:
-        print("Ошибка чтения файла")
-        return
+
+    for file in [file1, file2, file3, file4]:
+        if os.path.isfile(file):
+            if os.path.getsize(file) <= MAX_FILE_SIZE:
+                with open(file, errors='ignore') as f:
+                    documents.append(Document(f.read().casefold()))
+            else:
+                sys.stderr.write(f"Размер файла {file} больше 2 ГБ\n")
+                raise MemoryError
+        else:
+            sys.stderr.write(f"Файл {file} не существует\n")
+            raise FileNotFoundError
 
     corpus = Corpus(documents)
 
@@ -113,7 +107,7 @@ def main():
     corpus.compute_idfs()
     corpus.compute_tfidf()
 
-    print(corpus.get_word_set_len())
+    print(f"Количество уникальных слов: {corpus.get_word_set_len()}\n")
     print(corpus.get_tfidf_dataframe())
 
 
