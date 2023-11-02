@@ -6,6 +6,7 @@ def head(filepath, num_lines):
             if num_lines == 0:
                 break
 
-filename = "C:/Users/SamuraJ/Documents/Codes/Python/Generators/war.txt"
-for line in head(filename, 100):
+
+filename = "Second Lection/war.txt"
+for line in head(filename, 10):
     print(line, sep="", end="")

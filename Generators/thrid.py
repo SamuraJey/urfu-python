@@ -17,3 +17,6 @@ for dow in generate_dow(10, 25, 2023):
         break
     print(dow)
     i += 1
+
+for i in range(10):
+    print(i)
