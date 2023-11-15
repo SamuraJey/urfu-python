@@ -2,13 +2,13 @@ from urllib import parse
 import re
 import requests
 import time
-
+import httpx
 
 class TooManyRedirections(Exception):
     pass
 
 
-class WikipediaPathfinder:
+class FindPath:
     def __init__(self, start_doc, target_doc, lang):
         self.start_doc = start_doc
         self.target_doc = target_doc
@@ -16,7 +16,7 @@ class WikipediaPathfinder:
         self.queue = [start_doc]
         self.request_id = 0
         self.lang = lang
-        self.session = requests.Session()
+        self.session = httpx.Client()
 
     def search(self):
         while not self.search_on_next_page():
@@ -29,6 +29,7 @@ class WikipediaPathfinder:
 
         chain.reverse()
         print('Shortest path:', ' -> '.join(chain))
+        self.session.close()
 
     def search_on_next_page(self):
         self.request_id += 1
@@ -63,7 +64,7 @@ def main():
     end_word = "Машина"
     lang = "ru"
 
-    wp = WikipediaPathfinder(start_word, end_word, lang)
+    wp = FindPath(start_word, end_word, lang)
     start_time = time.time()
     wp.search()
     end_time = time.time()
