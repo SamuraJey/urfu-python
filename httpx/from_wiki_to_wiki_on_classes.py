@@ -9,11 +9,11 @@ class TooManyRedirections(Exception):
 
 
 class WikipediaPathfinder:
-    def __init__(self, start_word, end_word, lang):
-        self.start_word = start_word
-        self.end_word = end_word
-        self.history = {start_word: None}
-        self.queue = [start_word]
+    def __init__(self, start_doc, target_doc, lang):
+        self.start_doc = start_doc
+        self.target_doc = target_doc
+        self.history = {start_doc: None}
+        self.queue = [start_doc]
         self.request_id = 0
         self.lang = lang
         self.session = requests.Session()
@@ -22,7 +22,7 @@ class WikipediaPathfinder:
         while not self.search_on_next_page():
             pass
         chain = []
-        word = self.end_word
+        word = self.target_doc
         while word is not None:
             chain.append(word)
             word = self.history[word]
@@ -32,8 +32,10 @@ class WikipediaPathfinder:
 
     def search_on_next_page(self):
         self.request_id += 1
+
         if self.request_id > 2000:
             raise TooManyRedirections("Too many medirections (over 2000)")
+
         word = self.queue.pop(0)
 
         debug_info = f'{len(self.history)}, {self.request_id}, {word}'
@@ -47,10 +49,10 @@ class WikipediaPathfinder:
         for href in links:
             if href not in self.history:
                 self.history[href] = word
-                if href == self.end_word:
+                if href == self.target_doc:
                     return True
                 self.queue.append(href)
-        # print(f'{debug_info}')
+        print(f'{debug_info}')
 
 
 def main():
@@ -58,7 +60,7 @@ def main():
     # end_word = input()
     # lang = input()
     start_word = "Философия"
-    end_word = "Битва_при_Мегиддо_(XV_век_до_н._э.)"
+    end_word = "Машина"
     lang = "ru"
 
     wp = WikipediaPathfinder(start_word, end_word, lang)
