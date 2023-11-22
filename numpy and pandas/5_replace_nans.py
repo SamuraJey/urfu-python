@@ -12,6 +12,7 @@ def replace_nans(X):
     return X
 
 
+
 ######################################################
 assert_array_equal(replace_nans(
     np.array([[np.nan], [np.nan],  [np.nan]])),
