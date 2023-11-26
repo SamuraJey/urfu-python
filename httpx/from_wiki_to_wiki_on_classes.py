@@ -1,6 +1,5 @@
 from urllib import parse
 import re
-import requests
 import time
 import httpx
 
