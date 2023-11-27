@@ -21,5 +21,5 @@ with open(file4, errors='ignore') as f:
 documents = [doc_a, doc_b, doc_c, doc_d]
 vect = TfidfVectorizer()
 tfidf_matrix = vect.fit_transform(documents)
-df = pd.DataFrame(tfidf_matrix.toarray(), columns = vect.get_feature_names_out())
+df = pd.DataFrame(tfidf_matrix.toarray(), columns=vect.get_feature_names_out())
 print(df)

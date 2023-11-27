@@ -58,12 +58,13 @@ def create_path(start_page: str, page: str, path_dict: dict[str, str]) -> list[s
         start = R[duplicate][0]
         end = R[duplicate][-1]
         path = path[:start] + path[end:]
-            
+
     return path
 
 
 def find_path(page_from, page_to):
-    wiki_wiki = wikipediaapi.Wikipedia('CoolBot/0.0 (https://example.org/coolbot/; coolbot@example.org)', "ru")
+    wiki_wiki = wikipediaapi.Wikipedia(
+        'CoolBot/0.0 (https://example.org/coolbot/; coolbot@example.org)', "ru")
     nodes_dict = {}
     start_page = wiki_wiki.page(page_from)
     end_page = wiki_wiki.page(page_to)

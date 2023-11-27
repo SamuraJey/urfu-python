@@ -9,7 +9,6 @@ def sort_evens(A):
     return np.concatenate((sorted_div, not_div))
 
 
-
 ######################################################
 assert_array_equal(sort_evens(np.array([])), np.array([]))
 ######################################################

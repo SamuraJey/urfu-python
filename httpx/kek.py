@@ -7,6 +7,7 @@ import time
 class TooManyRedirections(Exception):
     pass
 
+
 def wikipedia_pathfinder(start_word, end_word, lang):
     history = {start_word: None}
     queue = [start_word]
@@ -36,7 +37,7 @@ def search_on_next_page(start_word, end_word, lang, history, queue, request_id, 
 
     r = session.get(url=f'https://{lang}.wikipedia.org/wiki/{word}')
 
-    pattern = re.compile(r'href="/wiki/([^:#"]+)"') # Всё кроме символов :#"
+    pattern = re.compile(r'href="/wiki/([^:#"]+)"')  # Всё кроме символов :#"
     links = (parse.unquote_plus(href) for href in pattern.findall(r.text))
 
     for href in links:

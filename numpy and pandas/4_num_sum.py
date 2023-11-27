@@ -11,11 +11,10 @@ def num_sum(np_arr: np.ndarray) -> np.ndarray:
     print(f"powers_of_10:\n {powers_of_10}")
     digits = (np_arr // powers_of_10) % 10
     print(f"digits:\n {digits}")
-    sum_of_digits = np.sum(digits, axis=0) 
+    sum_of_digits = np.sum(digits, axis=0)
     print(f"sum_of_digits: {sum_of_digits}")
 
     return sum_of_digits
-
 
 
 ######################################################

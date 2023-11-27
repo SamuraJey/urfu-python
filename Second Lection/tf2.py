@@ -1,16 +1,19 @@
 import math
 
+
 def calculate_tf(word, document):
     total_words = len(document.split())
     word_frequency = document.split().count(word)
     tf = word_frequency / total_words
     return tf
 
+
 def calculate_idf(word, documents):
     total_documents = len(documents)
     documents_with_word = sum(1 for doc in documents if word in doc)
     idf = math.log(total_documents / (1 + documents_with_word))
     return idf
+
 
 def calculate_tfidf(documents):
     unique_words = set()
@@ -27,6 +30,7 @@ def calculate_tfidf(documents):
             tfidf_scores[word].append(tfidf)
 
     return tfidf_scores
+
 
 # Example usage
 document1 = "John likes apple"

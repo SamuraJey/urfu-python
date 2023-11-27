@@ -23,14 +23,14 @@ def ZOOtable(zoo: dict) -> pd.DataFrame:
 
 ######################################################
 ZOO = {
-        'cat': {'color':'black', 'tail_len': 50.0, 'injured': False}, 
-        'dog': {'age': 6, 'tail_len': 30.5, 'injured': True}
-      }
+    'cat': {'color': 'black', 'tail_len': 50.0, 'injured': False},
+    'dog': {'age': 6, 'tail_len': 30.5, 'injured': True}
+}
 answer = pd.DataFrame(
     {
-     'Type':['cat', 'dog'], 
-     'injured':[False, True], 
-     'tail_len':[50.0, 30.5]
+        'Type': ['cat', 'dog'],
+        'injured': [False, True],
+        'tail_len': [50.0, 30.5]
     }
 )
 df = ZOOtable(ZOO)
@@ -41,12 +41,12 @@ assert_frame_equal(
 )
 ######################################################
 ZOO = {
-        'cat': {'color':'black'}, 
-        'dog': {'age': 6}
-      }
+    'cat': {'color': 'black'},
+    'dog': {'age': 6}
+}
 answer = pd.DataFrame(
     {
-     'Type':['cat', 'dog']
+        'Type': ['cat', 'dog']
     }
 )
 

@@ -12,7 +12,6 @@ doc_a = 'this document is first document'
 doc_b = 'this document is the second document'
 
 
-
 # Now create a dictionary of words and their occurence for each document in the corpus (collection of documents).
 
 
@@ -35,17 +34,17 @@ def create_word_dict(document):
 
     return dict_first, lenght_of_words1
 
+
 def compute_term_frequency(document):
 
     dict_first,  lenght_of_words1 = create_word_dict(document)
     term_frequency_dictionary = {}
 
-
     for word, count in dict_first.items():
         term_frequency_dictionary[word] = count / float(lenght_of_words1)
 
-
     return term_frequency_dictionary
+
 
 def compute_inverse_document_frequency(full_doc_list):
     idf_dict = {}
@@ -63,6 +62,3 @@ print(compute_term_frequency(doc_b))
 kek = [compute_term_frequency(doc_a), compute_term_frequency(doc_b)]
 print(kek)
 print(compute_inverse_document_frequency(kek))
-
-
-

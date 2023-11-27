@@ -1,4 +1,4 @@
-from lxml import etree as ET 
+from lxml import etree as ET
 
 tree = ET.parse('XML/movies.xml')
 root = tree.getroot()
@@ -11,7 +11,7 @@ for movie_elem in root.findall('Movie'):
         continue
     title = title_elem.text.strip()
     runtime = title_elem.attrib['runtime']
-    
+
     movies_dict[title] = runtime
 
 print(movies_dict)

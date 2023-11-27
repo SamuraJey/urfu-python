@@ -70,4 +70,3 @@ tfidf_b = compute_tfidf(tf_b, idfs)
 
 res = pd.DataFrame([tfidf_a, tfidf_b])
 print(res)
-
