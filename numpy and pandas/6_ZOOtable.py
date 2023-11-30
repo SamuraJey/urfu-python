@@ -8,15 +8,15 @@ def ZOOtable(zoo: dict) -> pd.DataFrame:
     df = pd.DataFrame.from_dict(zoo, orient='index')
 
     df.insert(0, 'Type', df.index)
-    print(f'1:\n{df}\n')
+    # print(f'1:\n{df}\n')
     df.sort_values('Type', inplace=True)
-    print(f'2:\n{df}\n')
+    # print(f'2:\n{df}\n')
     df = df.reindex(sorted(df.columns), axis=1)
-    print(f'3:\n{df}\n')
+    # print(f'3:\n{df}\n')
     df.reset_index(drop=True, inplace=True)
-    print(f'4:\n{df}\n')
+    # print(f'4:\n{df}\n')
     df.dropna(axis=1, how='any', inplace=True)
-    print(f'5:\n{df}\n')
+    # print(f'5:\n{df}\n')
 
     return df
 

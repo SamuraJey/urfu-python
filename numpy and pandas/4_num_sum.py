@@ -6,13 +6,13 @@ from pandas.testing import assert_frame_equal
 
 def num_sum(np_arr: np.ndarray) -> np.ndarray:
     num_digits = len(str(np.max(np_arr)))
-    print(f"num_digits: {num_digits}")
+    # print(f"num_digits: {num_digits}")
     powers_of_10 = 10 ** np.arange(num_digits)[:, np.newaxis]
-    print(f"powers_of_10:\n {powers_of_10}")
+    # print(f"powers_of_10:\n {powers_of_10}")
     digits = (np_arr // powers_of_10) % 10
-    print(f"digits:\n {digits}")
+    # print(f"digits:\n {digits}")
     sum_of_digits = np.sum(digits, axis=0)
-    print(f"sum_of_digits: {sum_of_digits}")
+    # print(f"sum_of_digits: {sum_of_digits}")
 
     return sum_of_digits
 

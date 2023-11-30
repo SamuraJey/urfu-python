@@ -4,10 +4,10 @@ from numpy.testing import assert_equal, assert_array_equal
 from pandas.testing import assert_frame_equal
 
 
-def sort_evens(A):
-    div_by_five = A[A % 2 == 0]
+def sort_evens(A: np.ndarray) -> np.ndarray:
+    div_by_two = A[A % 2 == 0]
     not_div = A[A % 2 != 0]
-    sorted_div = np.sort(div_by_five)
+    sorted_div = np.sort(div_by_two)
 
     return np.concatenate((sorted_div, not_div))
 

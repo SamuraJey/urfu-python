@@ -4,11 +4,10 @@ from numpy.testing import assert_equal, assert_array_equal
 from pandas.testing import assert_frame_equal
 
 
-def nearest_value(X, a):
+def nearest_value(X: np.array, a: float):
     distances = np.abs(X - a)
     min_distance = np.min(distances)
     closest_elements = X[distances == min_distance]
-    ew = np.min(closest_elements)
     return np.min(closest_elements)
 
 
