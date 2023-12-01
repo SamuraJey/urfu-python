@@ -7,6 +7,7 @@ from pandas.testing import assert_frame_equal
 def men_stat(df: pd.DataFrame) -> (float, float, float, float):
     ages_of_dead_males = df[(df['Survived'] == 0) &
                             (df['Sex'] == 'male')]['Age'].dropna()
+
     mean = ages_of_dead_males.mean()
     median = ages_of_dead_males.median()
     maximum = ages_of_dead_males.max()
