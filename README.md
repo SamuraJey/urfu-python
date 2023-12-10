@@ -1,6 +1,6 @@
 # UrFU-Python
 ---
-## Репозиторий для заданий по курсу "Python" (МОАИС) 
+## Репозиторий для заданий по курсу "Язык Python" (МОАИС) 
 ### Выполненные задания:
 - [Задания на декораторы](https://github.com/SamuraJey/urfu-python/tree/main/Decorators)
 - [Задания на генераторы](https://github.com/SamuraJey/urfu-python/tree/main/Generators)
