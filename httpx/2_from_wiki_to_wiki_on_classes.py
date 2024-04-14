@@ -3,6 +3,9 @@ import re
 import time
 import httpx
 
+# Этот код красивей, чем 2_from_wiki_to_wiki_no_classes.py
+# Но работает хуже
+
 
 class TooManyRedirections(Exception):
     pass
